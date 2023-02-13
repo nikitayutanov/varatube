@@ -1,0 +1,25 @@
+@use '@gear-js/ui/headings' as *;
+@use '@gear-js/ui/mixins' as *;
+
+.videos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 64px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.video {
+  @include transition;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.heading {
+  @extend %h5;
+  margin-bottom: 8px;
+}

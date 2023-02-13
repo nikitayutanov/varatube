@@ -1,5 +1,7 @@
 function Home() {
-  return <div>Home page</div>;
+  console.log();
+
+  return <>main</>;
 }
 
 export { Home };

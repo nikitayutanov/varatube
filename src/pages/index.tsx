@@ -1,7 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
+import { Videos } from './videos';
 import { Home } from './home';
 
-const routes = [{ path: '/', Page: Home }];
+const routes = [
+  { path: '/', Page: Home },
+  { path: 'videos', Page: Videos },
+];
 
 function Routing() {
   const getRoutes = () => routes.map(({ path, Page }) => <Route key={path} path={path} element={<Page />} />);
