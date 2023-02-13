@@ -1,0 +1,14 @@
+@use '@gear-js/ui/variables' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 24px 24px;
+  border-radius: $borderRadius;
+  background-color: #222225;
+
+  > *:not(:last-child) {
+    margin-bottom: 32px;
+  }
+}
