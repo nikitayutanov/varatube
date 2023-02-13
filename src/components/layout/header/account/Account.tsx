@@ -6,7 +6,7 @@ import { AccountsModal } from './accounts-modal';
 import { Wallet } from './wallet';
 
 function Account() {
-  const { account, accounts } = useAccount();
+  const { account } = useAccount();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -24,7 +24,8 @@ function Account() {
       ) : (
         <Button icon={userSVG} text="Sign in" onClick={openModal} />
       )}
-      {isModalOpen && <AccountsModal accounts={accounts} close={closeModal} />}
+
+      {isModalOpen && <AccountsModal close={closeModal} />}
     </>
   );
 }

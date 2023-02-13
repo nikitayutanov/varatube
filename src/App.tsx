@@ -2,6 +2,7 @@ import { useApi, useAccount } from '@gear-js/react-hooks';
 import { Routing } from 'pages';
 import { Header, Footer, ApiLoader } from 'components';
 import { withProviders } from 'hocs';
+import 'simplebar-react/dist/simplebar.min.css';
 import 'App.scss';
 
 function Component() {
