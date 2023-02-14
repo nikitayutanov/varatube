@@ -1,6 +1,6 @@
 import { Heading } from 'components';
 import { Link } from 'react-router-dom';
-import src from './placeholder.png';
+import src from 'assets/images/placeholder.png';
 import styles from './Videos.module.scss';
 
 const videos = [
