@@ -1,23 +1,51 @@
+import { useAccount } from '@gear-js/react-hooks';
 import { Button } from '@gear-js/ui';
-import { Heading } from 'components';
+import { Heading, Loader } from 'components';
+import { useSubscriptions, useSubscriptionsMessage } from 'hooks';
 import styles from './Subscription.module.scss';
 
 function Subscription() {
-  const isActive = false;
+  const { account } = useAccount();
+  const { decodedAddress } = account || {};
 
-  return (
+  const { subscriptionsState, isSubscriptionsStateRead } = useSubscriptions();
+  const subscription = subscriptionsState && decodedAddress ? subscriptionsState[decodedAddress] : undefined;
+
+  const { withRenewal, subscriptionStart, period, renewalDate } = subscription || {};
+  const [startTimestamp] = subscriptionStart || [];
+  const [renewTimestamp] = renewalDate || [];
+
+  const startDate = startTimestamp ? new Date(startTimestamp).toLocaleString() : '';
+  const renewDate = renewTimestamp ? new Date(renewTimestamp).toLocaleString() : '';
+
+  const sendMessage = useSubscriptionsMessage();
+
+  const cancelSubscription = () => sendMessage({ CancelSubscription: { subscriber: decodedAddress } });
+
+  return isSubscriptionsStateRead ? (
     <>
       <Heading text="My Subscription" />
 
       <div className={styles.main}>
-        {isActive ? (
+        {subscription ? (
           <>
             <ul className={styles.list}>
-              <li>Start Date: 01.01.2023</li>
-              <li>Renewal Date: 01.01.2023</li>
-              <li>End Date: 01.03.2023</li>
+              <li>
+                Start Date: <span className={styles.value}>{startDate}</span>
+              </li>
+
+              {renewDate && (
+                <li>
+                  Renewal Date: <span className={styles.value}>{renewDate}</span>
+                </li>
+              )}
+
+              <li>
+                Period: <span className={styles.value}>{period}</span>
+              </li>
             </ul>
-            <Button text="Cancel subscription" color="light" />
+
+            <Button text="Cancel subscription" color="light" onClick={cancelSubscription} />
           </>
         ) : (
           <>
@@ -27,6 +55,8 @@ function Subscription() {
         )}
       </div>
     </>
+  ) : (
+    <Loader />
   );
 }
 

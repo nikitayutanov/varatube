@@ -1,3 +1,3 @@
-import { useSubscriptions } from './api';
+import { useSubscriptions, useSubscriptionsMessage } from './api';
 
-export { useSubscriptions };
+export { useSubscriptions, useSubscriptionsMessage };
