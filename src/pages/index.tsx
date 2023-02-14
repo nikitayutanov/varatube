@@ -8,7 +8,7 @@ const routes = [
   { path: '/', Page: Home },
   { path: 'videos', Page: Videos },
   { path: 'subscription', Page: Subscription },
-  { path: 'video', Page: Video },
+  { path: 'video/:cid', Page: Video },
 ];
 
 function Routing() {
