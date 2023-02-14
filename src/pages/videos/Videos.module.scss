@@ -17,9 +17,26 @@
   &:hover {
     opacity: 0.5;
   }
+
+  > *:not(:last-child) {
+    margin-bottom: 8px;
+  }
+}
+
+.heading,
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 
 .heading {
   @extend %h5;
-  margin-bottom: 8px;
+  -webkit-line-clamp: 1;
+}
+
+.description {
+  color: #ccc;
+  -webkit-line-clamp: 2;
 }

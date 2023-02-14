@@ -1,3 +1,4 @@
+import { Heading } from 'components';
 import { Link } from 'react-router-dom';
 import src from './placeholder.png';
 import styles from './Videos.module.scss';
@@ -21,6 +22,9 @@ const videos = [
   { id: 15, name: 'First video' },
 ];
 
+const description =
+  'some random description using random words, some random description using random words, some random description using random words, some random description using random words';
+
 function Videos() {
   const isAnyVideo = videos.length > 0;
 
@@ -30,14 +34,21 @@ function Videos() {
         <Link to="/" className={styles.video}>
           <h3 className={styles.heading}>{name}</h3>
           <img src={src} alt="" />
+          <p className={styles.description}>{description}</p>
         </Link>
       </li>
     ));
 
-  return isAnyVideo ? (
-    <ul className={styles.videos}>{getVideos()}</ul>
-  ) : (
-    <p>There aren&apos;t any videos at the moment.</p>
+  return (
+    <>
+      <Heading text="Videos" />
+
+      {isAnyVideo ? (
+        <ul className={styles.videos}>{getVideos()}</ul>
+      ) : (
+        <p>There aren&apos;t any videos at the moment.</p>
+      )}
+    </>
   );
 }
 

@@ -1,12 +1,13 @@
 import { Button } from '@gear-js/ui';
+import { Heading } from 'components';
 import styles from './Subscription.module.scss';
 
 function Subscription() {
-  const isActive = true;
+  const isActive = false;
 
   return (
     <>
-      <h2 className={styles.heading}>My Subscription</h2>
+      <Heading text="My Subscription" />
 
       <div className={styles.main}>
         {isActive ? (
