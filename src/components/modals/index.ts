@@ -1,3 +1,3 @@
-import { SubscriptionModal } from './subscription-modal';
+import { PurchaseSubscriptionModal } from './purchase-subscription-modal';
 
-export { SubscriptionModal };
+export { PurchaseSubscriptionModal };

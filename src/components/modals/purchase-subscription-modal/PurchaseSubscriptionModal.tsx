@@ -1,6 +1,6 @@
 import { Button, Modal, Select } from '@gear-js/ui';
 import { useForm } from '@mantine/form';
-import styles from './SubscriptionModal.module.scss';
+import styles from './PurchaseSubscriptionModal.module.scss';
 
 const options = [
   { label: 'None', value: '' },
@@ -9,7 +9,7 @@ const options = [
 
 const initialValues = { renewal: options[0].value };
 
-function SubscriptionModal() {
+function PurchaseSubscriptionModal() {
   const { getInputProps } = useForm({ initialValues });
 
   return (
@@ -22,4 +22,4 @@ function SubscriptionModal() {
   );
 }
 
-export { SubscriptionModal };
+export { PurchaseSubscriptionModal };
