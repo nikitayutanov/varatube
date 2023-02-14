@@ -1,5 +1,8 @@
+import { useSubscriptions } from 'hooks';
+
 function Home() {
-  console.log();
+  const { subscriptionsState } = useSubscriptions();
+  console.log('subscriptionsState: ', subscriptionsState);
 
   return <>main</>;
 }
