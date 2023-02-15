@@ -1,14 +1,14 @@
 import { buttonStyles } from '@gear-js/ui';
 import clsx from 'clsx';
-import { useSubscriptions } from 'hooks';
+import { Loader } from 'components';
+import { useSubscription } from 'hooks';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.scss';
 
 function Home() {
-  const { subscriptionsState } = useSubscriptions();
-  console.log(subscriptionsState);
+  const isReady = useSubscription();
 
-  return (
+  return isReady ? (
     <>
       <Link
         to="subscription"
@@ -19,6 +19,8 @@ function Home() {
         Videos
       </Link>
     </>
+  ) : (
+    <Loader />
   );
 }
 

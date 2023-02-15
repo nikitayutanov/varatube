@@ -14,12 +14,17 @@ function Subscription() {
   const { subscriptionsState, isSubscriptionsStateRead } = useSubscriptions();
   const subscription = subscriptionsState && decodedAddress ? subscriptionsState[decodedAddress] : undefined;
 
-  const { withRenewal, subscriptionStart, period, renewalDate } = subscription || {};
-  const [startTimestamp] = subscriptionStart || [];
-  const [renewTimestamp] = renewalDate || [];
+  const {
+    startDate: startDateTimestamp,
+    period,
+    endDate: endDateTimestamp,
+    renewalDate: renewalDateTimestamp,
+    price,
+  } = subscription || {};
 
-  const startDate = startTimestamp ? new Date(startTimestamp).toLocaleString() : '';
-  const renewDate = renewTimestamp ? new Date(renewTimestamp).toLocaleString() : '';
+  const startDate = startDateTimestamp ? new Date(startDateTimestamp).toLocaleString() : '';
+  const endDate = endDateTimestamp ? new Date(endDateTimestamp).toLocaleString() : '';
+  const renewDate = renewalDateTimestamp ? new Date(renewalDateTimestamp).toLocaleString() : '';
 
   const sendMessage = useSubscriptionsMessage();
 
@@ -28,7 +33,7 @@ function Subscription() {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const cancelSubscription = () => sendMessage({ CancelSubscription: { subscriber: decodedAddress } });
+  const cancelSubscription = () => sendMessage({ CancelSubscription: null });
 
   const purchaseSubscription = (values: { isRenewal: boolean; period: string }) =>
     sendMessage(
@@ -56,6 +61,10 @@ function Subscription() {
                     Start Date: <span className={styles.value}>{startDate}</span>
                   </li>
 
+                  <li>
+                    End Date: <span className={styles.value}>{endDate}</span>
+                  </li>
+
                   {renewDate && (
                     <li>
                       Renewal Date: <span className={styles.value}>{renewDate}</span>
@@ -65,6 +74,12 @@ function Subscription() {
                   <li>
                     Period: <span className={styles.value}>{period}</span>
                   </li>
+
+                  {price && (
+                    <li>
+                      Price: <span className={styles.value}>{price}</span>
+                    </li>
+                  )}
                 </ul>
 
                 <Button text="Cancel subscription" color="light" onClick={cancelSubscription} />

@@ -5,9 +5,11 @@ import { ChangeEvent } from 'react';
 import styles from './PurchaseSubscriptionModal.module.scss';
 
 const periods = [
-  { label: '30 seconds', value: 'ThirtySecs' },
-  { label: '1 minute', value: 'Minute' },
-  { label: '1 minute 10 seconds', value: 'OneMinuteTenSecs' },
+  { label: 'Year', value: 'Year' },
+  { label: '9 months', value: 'NineMonths' },
+  { label: '6 months', value: 'SixMonths' },
+  { label: '3 months', value: 'ThreeMonths' },
+  { label: '1 month', value: 'Month' },
 ];
 
 const initialValues = { isRenewal: false, period: periods[0].value };
