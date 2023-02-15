@@ -1,21 +1,49 @@
-import { Button, Modal, Select } from '@gear-js/ui';
-import { useForm } from '@mantine/form';
+import { Button, Checkbox, Modal, Select } from '@gear-js/ui';
+import { useForm as useMantineForm } from '@mantine/form';
+import { UseFormInput } from '@mantine/form/lib/use-form';
+import { ChangeEvent } from 'react';
 import styles from './PurchaseSubscriptionModal.module.scss';
 
-const options = [
-  { label: 'None', value: '' },
-  { label: '5 minutes', value: '5' },
+const periods = [
+  { label: '30 seconds', value: 'ThirtySecs' },
+  { label: '1 minute', value: 'Minute' },
+  { label: '1 minute 10 seconds', value: 'OneMinuteTenSecs' },
 ];
 
-const initialValues = { renewal: options[0].value };
+const initialValues = { isRenewal: false, period: periods[0].value };
 
-function PurchaseSubscriptionModal() {
-  const { getInputProps } = useForm({ initialValues });
+type Props = { close: () => void; onSubmit: (values: typeof initialValues) => void };
+
+const useForm = (input: UseFormInput<Record<string, unknown>>) => {
+  const form = useMantineForm(input);
+  const { values, getInputProps, setFieldValue } = form;
+
+  const getCheckboxProps = (name: string) => getInputProps(name, { type: 'checkbox' });
+
+  const handleRadioChange = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
+    setFieldValue(name, value);
+  };
+
+  const getRadioProps = (name: keyof typeof values, value: string) => {
+    const checked = values[name] === value;
+    const onChange = handleRadioChange;
+
+    return { onChange, value, checked, name };
+  };
+
+  return { ...form, getCheckboxProps, getRadioProps };
+};
+
+function PurchaseSubscriptionModal({ close, onSubmit }: Props) {
+  const form = useForm({ initialValues });
+  const { getInputProps, getCheckboxProps } = form;
 
   return (
-    <Modal heading="Purchase subscription" close={() => {}}>
-      <form className={styles.form}>
-        <Select label="Auto-renewal" options={options} {...getInputProps('renewal')} />
+    <Modal heading="Purchase subscription" close={close}>
+      {/* @ts-ignore */}
+      <form className={styles.form} onSubmit={form.onSubmit(onSubmit)}>
+        <Select label="Period" direction="y" options={periods} {...getInputProps('period')} />
+        <Checkbox label="Enable auto-renewal" {...getCheckboxProps('isRenewal')} />
         <Button type="submit" text="Purchase subscription" />
       </form>
     </Modal>
