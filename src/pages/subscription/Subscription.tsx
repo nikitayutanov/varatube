@@ -3,6 +3,7 @@ import { Button } from '@gear-js/ui';
 import { useState } from 'react';
 import { Heading, Loader, PurchaseSubscriptionModal } from 'components';
 import { useSubscriptions, useSubscriptionsMessage } from 'hooks';
+import pic from 'assets/images/pic.png';
 import styles from './Subscription.module.scss';
 
 const ftContractId = '0xa2677f49725647da5cff15e8a42b2ead9102c387d646ff856f586b81e4b598a0';
@@ -56,36 +57,42 @@ function Subscription() {
           <div className={styles.main}>
             {subscription ? (
               <>
-                <ul className={styles.list}>
-                  <li>
-                    Start Date: <span className={styles.value}>{startDate}</span>
-                  </li>
-
-                  <li>
-                    End Date: <span className={styles.value}>{endDate}</span>
-                  </li>
-
-                  {renewDate && (
+                <div className={styles.subWrapper}>
+                  <ul className={styles.list}>
                     <li>
-                      Renewal Date: <span className={styles.value}>{renewDate}</span>
+                      Start Date: <span className={styles.value}>{startDate}</span>
                     </li>
-                  )}
 
-                  <li>
-                    Period: <span className={styles.value}>{period}</span>
-                  </li>
-
-                  {price && (
                     <li>
-                      Price: <span className={styles.value}>{price}</span>
+                      End Date: <span className={styles.value}>{endDate}</span>
                     </li>
-                  )}
-                </ul>
+
+                    {renewDate && (
+                      <li>
+                        Renewal Date: <span className={styles.value}>{renewDate}</span>
+                      </li>
+                    )}
+
+                    <li>
+                      Period: <span className={styles.value}>{period}</span>
+                    </li>
+
+                    {price && (
+                      <li>
+                        Price: <span className={styles.value}>{price}</span>
+                      </li>
+                    )}
+                  </ul>
+
+                  <img src={pic} alt="" />
+                </div>
 
                 <Button text="Cancel subscription" color="light" onClick={cancelSubscription} />
               </>
             ) : (
               <>
+                <img src={pic} alt="" className={styles.noSubPic} />
+
                 <div style={{ textAlign: 'center' }}>
                   <p style={{ marginBottom: '4px' }}>You don&apos;t have an active subscription.</p>
                   <p>Please subscribe to get access to app content.</p>

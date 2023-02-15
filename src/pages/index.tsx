@@ -6,8 +6,7 @@ import { Subscription } from './subscription';
 import { Video } from './video';
 
 const routes = [
-  { path: '/', Page: Home },
-  { path: 'videos', Page: Videos },
+  { path: '/', Page: Videos },
   { path: 'subscription', Page: Subscription },
   { path: 'video/:cid', Page: Video },
 ];

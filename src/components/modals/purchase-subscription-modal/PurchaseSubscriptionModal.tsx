@@ -12,7 +12,7 @@ const periods = [
   { label: '1 month', value: 'Month' },
 ];
 
-const initialValues = { isRenewal: false, period: periods[0].value };
+const initialValues = { isRenewal: true, period: periods[0].value };
 
 type Props = { close: () => void; onSubmit: (values: typeof initialValues) => void };
 
@@ -46,6 +46,10 @@ function PurchaseSubscriptionModal({ close, onSubmit }: Props) {
       <form className={styles.form} onSubmit={form.onSubmit(onSubmit)}>
         <Select label="Period" direction="y" options={periods} {...getInputProps('period')} />
         <Checkbox label="Enable auto-renewal" {...getCheckboxProps('isRenewal')} />
+        <p className={styles.text}>
+          By confirming your subscription, you hereby authorize VaraTube Inc. to charge your wallet for the amount of
+          tokens for this and future payments.
+        </p>
         <Button type="submit" text="Purchase subscription" />
       </form>
     </Modal>

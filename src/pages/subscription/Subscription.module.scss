@@ -1,4 +1,5 @@
 .main {
+  width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -6,7 +7,7 @@
   align-items: center;
 
   > *:not(:last-child) {
-    margin-bottom: 64px;
+    margin-bottom: 32px;
   }
 }
 
@@ -24,4 +25,19 @@
 
 .value {
   font-weight: 600;
+}
+
+.noSubPic {
+  max-width: 300px;
+}
+
+.subWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+
+  img {
+    max-width: 300px;
+  }
 }
