@@ -71,7 +71,11 @@ function Subscription() {
               </>
             ) : (
               <>
-                <p>You don&apos;t have an active subscription</p>
+                <div style={{ textAlign: 'center' }}>
+                  <p style={{ marginBottom: '4px' }}>You don&apos;t have an active subscription.</p>
+                  <p>Please subscribe to get access to app content.</p>
+                </div>
+
                 <Button text="Subscribe" onClick={openModal} />
               </>
             )}

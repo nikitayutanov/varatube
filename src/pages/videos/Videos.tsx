@@ -1,6 +1,7 @@
-import { Heading } from 'components';
+import { Heading, Loader } from 'components';
 import { Link } from 'react-router-dom';
 import { ADDRESS } from 'consts';
+import { useSubscription } from 'hooks';
 import styles from './Videos.module.scss';
 
 const name = 'Random Name';
@@ -22,6 +23,8 @@ const CIDs = [
 function Videos() {
   const isAnyVideo = CIDs.length > 0;
 
+  const isReady = useSubscription();
+
   const getVideos = () =>
     CIDs.map((cid) => (
       <li key={cid}>
@@ -40,7 +43,7 @@ function Videos() {
       </li>
     ));
 
-  return (
+  return isReady ? (
     <>
       <Heading text="Videos" />
 
@@ -50,6 +53,8 @@ function Videos() {
         <p>There aren&apos;t any videos at the moment.</p>
       )}
     </>
+  ) : (
+    <Loader />
   );
 }
 

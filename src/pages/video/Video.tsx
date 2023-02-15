@@ -1,6 +1,7 @@
-import { Heading } from 'components';
+import { Heading, Loader } from 'components';
 import { useParams } from 'react-router-dom';
 import { ADDRESS } from 'consts';
+import { useSubscription } from 'hooks';
 import styles from './Video.module.scss';
 
 const heading = 'Random Name';
@@ -10,8 +11,9 @@ const description =
 
 function Video() {
   const { cid } = useParams();
+  const isReady = useSubscription();
 
-  return (
+  return isReady ? (
     <div className={styles.wrapper}>
       <Heading text={heading} />
 
@@ -24,6 +26,8 @@ function Video() {
 
       <p>{description}</p>
     </div>
+  ) : (
+    <Loader />
   );
 }
 
