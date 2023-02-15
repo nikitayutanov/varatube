@@ -22,5 +22,11 @@ main {
 
 body {
   // background-color: #1e1e1e;
-  background-color: #232329;
+  background-color: #1a1a1f;
+  background-image: url(assets/images/shadow.svg);
+  background-position: left -150px top 0;
+  // background-size: contain;
+  background-size: auto cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
 }
