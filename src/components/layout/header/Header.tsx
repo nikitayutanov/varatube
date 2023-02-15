@@ -1,6 +1,6 @@
 import { buttonStyles } from '@gear-js/ui';
 import clsx from 'clsx';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Logo } from './logo';
 import { Account } from './account';
 import styles from './Header.module.scss';
@@ -14,11 +14,11 @@ function Header({ isAccountVisible }: Props) {
     <header className={styles.header}>
       <Logo />
 
-      <NavLink
+      <Link
         to="subscription"
         className={clsx(buttonStyles.button, buttonStyles.medium, buttonStyles.secondary, styles.link)}>
         My Subscription
-      </NavLink>
+      </Link>
 
       {isAccountVisible && <Account />}
     </header>

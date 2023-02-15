@@ -5,9 +5,8 @@ import { Heading, Loader, PurchaseSubscriptionModal } from 'components';
 import { useSubscriptions, useSubscriptionsMessage } from 'hooks';
 import pic from 'assets/images/pic.png';
 import clsx from 'clsx';
+import { ADDRESS } from 'consts';
 import styles from './Subscription.module.scss';
-
-const ftContractId = '0xa2677f49725647da5cff15e8a42b2ead9102c387d646ff856f586b81e4b598a0';
 
 function Subscription() {
   const { account } = useAccount();
@@ -34,7 +33,7 @@ function Subscription() {
     sendMessage(
       {
         RegisterSubscription: {
-          payment_method: ftContractId,
+          payment_method: ADDRESS.FT_CONTRACT,
           period: { [values.period]: null },
           with_renewal: values.isRenewal,
         },

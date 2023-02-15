@@ -26,10 +26,7 @@
   @include transition;
 
   &:hover {
-    h3,
-    p {
-      opacity: 0.5;
-    }
+    opacity: 0.75;
 
     video {
       transform: scale(2.2);
