@@ -26,6 +26,7 @@ type FullSubState = {
     renewalDate: number;
     renewalBlock: number;
     price: number;
+    willRenew: boolean;
   };
 };
 

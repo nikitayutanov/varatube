@@ -1,9 +1,10 @@
 import { useAccount } from '@gear-js/react-hooks';
-import { Button } from '@gear-js/ui';
+import { Button, Checkbox, checkboxStyles } from '@gear-js/ui';
 import { useState } from 'react';
 import { Heading, Loader, PurchaseSubscriptionModal } from 'components';
 import { useSubscriptions, useSubscriptionsMessage } from 'hooks';
 import pic from 'assets/images/pic.png';
+import clsx from 'clsx';
 import styles from './Subscription.module.scss';
 
 const ftContractId = '0xa2677f49725647da5cff15e8a42b2ead9102c387d646ff856f586b81e4b598a0';
@@ -15,17 +16,10 @@ function Subscription() {
   const { subscriptionsState, isSubscriptionsStateRead } = useSubscriptions();
   const subscription = subscriptionsState && decodedAddress ? subscriptionsState[decodedAddress] : undefined;
 
-  const {
-    startDate: startDateTimestamp,
-    period,
-    endDate: endDateTimestamp,
-    renewalDate: renewalDateTimestamp,
-    price,
-  } = subscription || {};
+  const { startDate: startDateTimestamp, period, endDate: endDateTimestamp, price, willRenew } = subscription || {};
 
   const startDate = startDateTimestamp ? new Date(startDateTimestamp).toLocaleString() : '';
   const endDate = endDateTimestamp ? new Date(endDateTimestamp).toLocaleString() : '';
-  const renewDate = renewalDateTimestamp ? new Date(renewalDateTimestamp).toLocaleString() : '';
 
   const sendMessage = useSubscriptionsMessage();
 
@@ -67,12 +61,6 @@ function Subscription() {
                       End Date: <span className={styles.value}>{endDate}</span>
                     </li>
 
-                    {renewDate && (
-                      <li>
-                        Renewal Date: <span className={styles.value}>{renewDate}</span>
-                      </li>
-                    )}
-
                     <li>
                       Period: <span className={styles.value}>{period}</span>
                     </li>
@@ -82,6 +70,16 @@ function Subscription() {
                         Price: <span className={styles.value}>{price}</span>
                       </li>
                     )}
+
+                    <li>
+                      Auto-renewal:
+                      <input
+                        type="checkbox"
+                        className={clsx(checkboxStyles.input, checkboxStyles.checkbox)}
+                        checked={willRenew}
+                        readOnly
+                      />
+                    </li>
                   </ul>
 
                   <img src={pic} alt="" />
